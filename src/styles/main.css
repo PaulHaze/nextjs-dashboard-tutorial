@@ -43,6 +43,13 @@
   --spacing-slg: 64rem;
   --spacing-sxl: 80rem;
   --spacing-s2xl: 96rem;
+
+  /* Animations */
+  @keyframes shimmer {
+    100% {
+      transform: 'translateX(100%)';
+    }
+  }
 }
 
 @layer base {
