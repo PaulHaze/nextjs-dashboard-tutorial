@@ -1,0 +1,82 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  - package-ecosystem: 'npm' # or 'pip', 'go', 'maven', etc.
+    directory: '/' # Root directory where dependencies are located
+    schedule:
+      interval: 'weekly' # How often to check for updates
+    target-branch: 'main' # Default branch for updates
+    open-pull-requests-limit: 25
+    pull-request-branch-name:
+      separator: '-'
+    commit-message:
+      prefix: 'chore(deps)'
+    rebase-strategy: 'auto'
+    allow:
+      - dependency-type: 'direct'
+      - dependency-type: 'development'
+    versioning-strategy: increase-if-necessary
+    labels:
+      - 'dependencies'
+      - 'automerge'
+
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly' # How often to check for updates
+    target-branch: 'daisyui' # Default branch for updates
+    open-pull-requests-limit: 10
+    pull-request-branch-name:
+      separator: '-'
+    commit-message:
+      prefix: 'chore(deps)'
+    rebase-strategy: 'auto'
+    allow:
+      - dependency-type: 'direct'
+      - dependency-type: 'development'
+    versioning-strategy: increase-if-necessary
+    labels:
+      - 'dependencies'
+      - 'automerge'
+
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly' # How often to check for updates
+    target-branch: 'shadcn' # Default branch for updates
+    open-pull-requests-limit: 10
+    pull-request-branch-name:
+      separator: '-'
+    commit-message:
+      prefix: 'chore(deps)'
+    rebase-strategy: 'auto'
+    allow:
+      - dependency-type: 'direct'
+      - dependency-type: 'development'
+    versioning-strategy: increase-if-necessary
+    labels:
+      - 'dependencies'
+      - 'automerge'
+
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly' # How often to check for updates
+    target-branch: 'testing' # Default branch for updates
+    open-pull-requests-limit: 10
+    pull-request-branch-name:
+      separator: '-'
+    commit-message:
+      prefix: 'chore(deps)'
+    rebase-strategy: 'auto'
+    allow:
+      - dependency-type: 'direct'
+      - dependency-type: 'development'
+    versioning-strategy: increase-if-necessary
+    labels:
+      - 'dependencies'
+      - 'automerge'
