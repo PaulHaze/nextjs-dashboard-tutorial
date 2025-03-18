@@ -26,10 +26,9 @@ const geistMono = localFont({
   weight: '100 900',
 });
 
-// !CHANGETHIS
 export const metadata: Metadata = {
-  title: 'CHANGE THIS',
-  description: 'CHANGE THIS',
+  title: 'Dashboard Tutorial',
+  description: 'My code for the current NextJs Dashboard Tutorial',
 };
 
 export default function RootLayout({
@@ -44,7 +43,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <div className="relative">
-            <div className="absolute right-2 top-3">
+            <div className="absolute top-3 right-2">
               <ThemeToggle />
             </div>
             {children}
