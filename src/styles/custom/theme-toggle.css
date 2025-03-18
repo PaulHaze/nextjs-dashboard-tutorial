@@ -1,4 +1,5 @@
 .theme-toggle {
+  cursor: auto;
   -webkit-tap-highlight-color: transparent;
   outline-offset: 5px;
 
