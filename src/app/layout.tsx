@@ -5,15 +5,12 @@ import { ThemeToggle } from '@/components/ui';
 import '@/styles/main.css';
 
 //* LEFT IN AS EXAMPLE OF HOW TO USE GOOGLE FONTS
-// import { Nabla } from 'next/font/google';
-// const nabla = Nabla({
-//   subsets: ['latin'],
-//   variable: '--font-nabla',
-//   weight: '400',
-// });
-
-//* INCLUDE THIS IN <body>
-// ${nabla.variable}
+import { Lusitana } from 'next/font/google';
+const lusitana = Lusitana({
+  subsets: ['latin'],
+  variable: '--font-lusitana',
+  weight: ['400', '700'],
+});
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -39,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${lusitana.variable} antialiased`}
       >
         <ThemeProvider>
           <div className="relative">

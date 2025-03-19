@@ -16,6 +16,7 @@
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-lusitana);
 
   /* 
   ADD THIS FOR CUSTOM FONT USE
@@ -65,19 +66,19 @@
     @apply font-sans leading-normal font-normal;
   }
   h1 {
-    @apply text-5xl;
+    @apply text-6xl;
   }
   h2 {
-    @apply text-4xl;
+    @apply text-5xl;
   }
   h3 {
-    @apply text-3xl;
+    @apply text-4xl;
   }
   h4 {
-    @apply text-2xl;
+    @apply text-3xl;
   }
   h5 {
-    @apply text-xl;
+    @apply text-2xl;
   }
 }
 
