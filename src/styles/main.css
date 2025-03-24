@@ -7,12 +7,13 @@
 
 :root {
   --bg-base: var(--color-slate-50);
+  --bg-base-100: var(--color-slate-100);
   --content-base: var(--color-slate-900);
 }
-:root[data-theme='dark'] {
+/* :root[data-theme='dark'] {
   --bg-base: var(--color-slate-900);
   --content-base: var(--color-slate-50);
-}
+} */
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
@@ -24,6 +25,7 @@
 */
 
   --color-base: var(--bg-base);
+  --color-base-100: var(--bg-base-100);
   --color-base-content: var(--content-base);
 
   /* Add a small breakpoint for mobile */

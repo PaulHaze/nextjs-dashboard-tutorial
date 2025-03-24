@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import localFont from 'next/font/local';
-import { ThemeToggle } from '@/components/ui';
+// import { ThemeToggle } from '@/components/ui';
 import '@/styles/main.css';
 
 //* LEFT IN AS EXAMPLE OF HOW TO USE GOOGLE FONTS
@@ -40,9 +40,9 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <div className="relative">
-            <div className="absolute top-3 right-2">
+            {/* <div className="absolute top-3 right-2">
               <ThemeToggle />
-            </div>
+            </div> */}
             {children}
           </div>
         </ThemeProvider>
