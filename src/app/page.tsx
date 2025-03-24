@@ -9,7 +9,7 @@ export default function HomePage() {
         <AcmeLogo />
       </div>
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-        <div className="bg-base-100 flex flex-col justify-center gap-6 rounded-lg px-6 py-10 md:w-2/5 md:px-10">
+        <div className="bg-base-100/70 flex flex-col justify-center gap-6 rounded-lg px-6 py-10 md:w-2/5 md:px-10">
           <p
             className={`text-xl text-gray-800 md:text-2xl md:leading-normal lg:text-3xl`}
           >
