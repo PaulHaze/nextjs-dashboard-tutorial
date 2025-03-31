@@ -1,10 +1,10 @@
-import { CalendarIcon } from '@heroicons/react/24/outline';
+// import { CalendarIcon } from '@heroicons/react/24/outline';
 
-import { generateYAxis } from '@/lib/utils';
-import { Revenue } from '@/lib/definitions';
+// import { generateYAxis } from '@/lib/utils';
+// import { Revenue } from '@/lib/definitions';
 
-export function RevenueChart({ revenue }: { revenue: Revenue[] }) {
-  const chartHeight = 350;
+export function RevenueChart() {
+  // const chartHeight = 350;
 
   // NOTE: Uncomment this code in Chapter 7
 
