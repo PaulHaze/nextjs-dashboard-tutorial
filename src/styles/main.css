@@ -18,6 +18,7 @@
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-serif: var(--font-lusitana);
+  --font-lusitana: var(--font-lusitana);
 
   /* 
   ADD THIS FOR CUSTOM FONT USE
