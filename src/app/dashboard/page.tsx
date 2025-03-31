@@ -1,7 +1,9 @@
+import { Card } from '@/components/ui';
+
 export default function DashboardPage() {
   return (
     <div>
-      <p>DashboardPage Placeholder</p>
+      <Card title="Test Card" value="$444" type="invoices" />
     </div>
   );
 }
