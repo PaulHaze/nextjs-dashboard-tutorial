@@ -9,6 +9,7 @@ type LatestInvoicesProps = {
 };
 
 export function LatestInvoices({ latestInvoices }: LatestInvoicesProps) {
+  console.log('latestInvoices', latestInvoices);
   return (
     <div className="flex w-full flex-col md:col-span-4">
       <h2 className="b-4 font-serif text-xl md:text-2xl">Latest Invoices</h2>
@@ -31,7 +32,7 @@ export function LatestInvoices({ latestInvoices }: LatestInvoicesProps) {
                     height={32}
                   />
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold md:text-base">
+                    <p className="lg:text-md truncate text-sm font-semibold">
                       {invoice.name}
                     </p>
                     <p className="hidden text-sm text-gray-500 sm:block">
@@ -39,9 +40,7 @@ export function LatestInvoices({ latestInvoices }: LatestInvoicesProps) {
                     </p>
                   </div>
                 </div>
-                <p
-                  className={`truncate font-serif text-sm font-medium md:text-base`}
-                >
+                <p className="lg:text-md truncate font-serif text-sm font-medium">
                   {invoice.amount}
                 </p>
               </div>
