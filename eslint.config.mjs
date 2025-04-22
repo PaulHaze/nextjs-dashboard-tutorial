@@ -4,6 +4,7 @@ import pluginNext from '@next/eslint-plugin-next';
 import tseslint from 'typescript-eslint';
 import pluginReact from 'eslint-plugin-react';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import pluginImport from 'eslint-plugin-import';
 
 const baseConfig = {
   name: 'Base Configuration',
@@ -30,19 +31,20 @@ const tsConfig = {
   ignores: ['e2e/**', '**/*.spec.{ts,tsx}', '**/*.test.{ts,tsx}'],
   extends: [eslint.configs.recommended, ...tseslint.configs.recommended],
   // custom rules
-  rules: {},
 };
 
 const nextLint = {
   name: 'NextJs Plugin Config',
   plugins: {
     '@next/next': pluginNext,
+    import: pluginImport,
   },
   files: ['**/*.{js,mjs,cjs,ts,jsx,tsx,mjs}'],
   rules: {
     ...pluginNext.configs.recommended.rules,
     ...pluginNext.configs['core-web-vitals'].rules,
     '@next/next/no-img-element': 'off',
+    'import/no-cycle': ['error', { maxDepth: 1 }],
   },
 };
 
@@ -62,5 +64,5 @@ export default tseslint.config(
   // Global Ignore
   {
     ignores: ['.next/*', 'node_modules/*', 'dist/*', 'build/*'],
-  }
+  },
 );
