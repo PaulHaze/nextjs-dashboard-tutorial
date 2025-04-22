@@ -96,3 +96,8 @@
 @utility flex-center {
   @apply flex items-center justify-center;
 }
+@utility shimmer {
+  &:before {
+    @apply absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/60 to-transparent;
+  }
+}
