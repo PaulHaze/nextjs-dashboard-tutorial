@@ -1,6 +1,8 @@
-// import { Card, RevenueChart, LatestInvoices } from '@/components/ui';
+import { Card, RevenueChart, LatestInvoices } from '@/components/ui';
+import { fetchRevenue } from '@/lib/data';
 
 export default async function DashboardPage() {
+  const revenue = await fetchRevenue();
   return (
     <main>
       <h1 className="mb-4 font-serif text-2xl md:text-3xl">Dashboard</h1>
@@ -16,8 +18,7 @@ export default async function DashboardPage() {
         /> */}
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-        Rev Chart Invoices
-        {/* <RevenueChart revenue={revenue}  /> */}
+        <RevenueChart revenue={revenue} />
         {/* <LatestInvoices latestInvoices={latestInvoices} /> */}
       </div>
     </main>
