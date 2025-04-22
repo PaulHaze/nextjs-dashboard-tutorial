@@ -10,9 +10,9 @@ type LatestInvoicesProps = {
 
 export function LatestInvoices({ latestInvoices }: LatestInvoicesProps) {
   return (
-    <div className="flex w-full flex-col md:col-span-4">
-      <h2 className="b-4 font-serif text-xl md:text-2xl">Latest Invoices</h2>
-      <div className="flex grow flex-col justify-between rounded-xl bg-gray-50 p-4">
+    <div className="mt-4 flex w-full flex-col md:col-span-4">
+      <h2 className="mb-4 font-serif text-xl md:text-2xl">Latest Invoices</h2>
+      <div className="flex grow flex-col justify-between rounded-xl bg-gray-50 py-4">
         <div className="bg-white px-6">
           {latestInvoices.map((invoice, i) => {
             return (
@@ -39,7 +39,7 @@ export function LatestInvoices({ latestInvoices }: LatestInvoicesProps) {
                     </p>
                   </div>
                 </div>
-                <p className="lg:text-md truncate font-serif text-sm font-medium">
+                <p className="truncate font-serif text-sm font-medium lg:text-lg">
                   {invoice.amount}
                 </p>
               </div>
