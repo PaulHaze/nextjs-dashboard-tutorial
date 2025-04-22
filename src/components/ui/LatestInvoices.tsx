@@ -9,7 +9,6 @@ type LatestInvoicesProps = {
 };
 
 export function LatestInvoices({ latestInvoices }: LatestInvoicesProps) {
-  console.log('latestInvoices', latestInvoices);
   return (
     <div className="flex w-full flex-col md:col-span-4">
       <h2 className="b-4 font-serif text-xl md:text-2xl">Latest Invoices</h2>
