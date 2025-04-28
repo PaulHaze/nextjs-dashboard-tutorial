@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { AcmeLogo } from '@/components/ui';
+import { AcmeLogo, CardSkeleton } from '@/components/ui';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 export default function HomePage() {
@@ -28,6 +28,7 @@ export default function HomePage() {
             <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
           </Link>
         </div>
+        <CardSkeleton />
         <div className="flex items-center justify-center p-6 md:w-3/5 md:px-4 md:py-12">
           {/* Add Hero Images Here */}
           <Image

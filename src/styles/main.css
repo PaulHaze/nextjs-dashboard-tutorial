@@ -61,10 +61,10 @@
     }
   }
 
-  --animate-shimmer: shimmer 2s ease-in-out infinite;
+  --animate-shimmer: shimmer 1.5s ease-in-out infinite;
   @keyframes shimmer {
     0% {
-      transform: translateX(-100%);
+      transform: translateX(0);
     }
     100% {
       transform: translateX(200%);
@@ -113,7 +113,5 @@
   @apply flex items-center justify-center;
 }
 @utility shimmer {
-  &:before {
-    @apply absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/60 to-transparent;
-  }
+  @apply before:animate-shimmer before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent;
 }
