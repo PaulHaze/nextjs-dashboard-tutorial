@@ -113,5 +113,5 @@
   @apply flex items-center justify-center;
 }
 @utility shimmer {
-  @apply before:animate-shimmer before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent;
+  @apply before:animate-shimmer before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent;
 }
