@@ -1,10 +1,9 @@
-import { CardSkeleton } from '@/components/ui';
+import { DashboardSkeleton } from '@/components/ui';
 
 export default function LoadingPage() {
   return (
     <div>
-      <p>Loading...</p>
-      <CardSkeleton />
+      <DashboardSkeleton />
     </div>
   );
 }

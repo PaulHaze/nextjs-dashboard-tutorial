@@ -1,9 +1,4 @@
-import {
-  Card,
-  RevenueChart,
-  LatestInvoices,
-  CardSkeleton,
-} from '@/components/ui';
+import { Card, RevenueChart, LatestInvoices } from '@/components/ui';
 import { fetchRevenue, fetchLatestInvoices, fetchCardData } from '@/lib/data';
 
 export default async function DashboardPage() {
@@ -18,7 +13,6 @@ export default async function DashboardPage() {
 
   return (
     <main>
-      <CardSkeleton />
       <h1 className="mb-4 font-serif text-2xl md:text-3xl">Dashboard</h1>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
