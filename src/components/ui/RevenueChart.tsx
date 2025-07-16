@@ -1,13 +1,11 @@
 import { CalendarIcon } from '@heroicons/react/24/outline';
 
 import { generateYAxis } from '@/lib/utils';
-import { Revenue } from '@/lib/definitions';
 
-type RevenueChartProps = {
-  revenue: Revenue[];
-};
+import { fetchRevenue } from '@/lib/data';
 
-export function RevenueChart({ revenue }: RevenueChartProps) {
+export async function RevenueChart() {
+  const revenue = await fetchRevenue();
   const chartHeight = 350;
 
   const { yAxisLabels, topLabel } = generateYAxis(revenue);

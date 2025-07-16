@@ -1,8 +1,14 @@
-import { Card, RevenueChart, LatestInvoices } from '@/components/ui';
-import { fetchRevenue, fetchLatestInvoices, fetchCardData } from '@/lib/data';
+import { Suspense } from 'react';
+
+import {
+  Card,
+  RevenueChart,
+  LatestInvoices,
+  RevenueChartSkeleton,
+} from '@/components/ui';
+import { fetchLatestInvoices, fetchCardData } from '@/lib/data';
 
 export default async function DashboardPage() {
-  const revenue = await fetchRevenue();
   const latestInvoices = await fetchLatestInvoices();
   const {
     totalPaidInvoices,
@@ -26,7 +32,9 @@ export default async function DashboardPage() {
         />
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-        <RevenueChart revenue={revenue} />
+        <Suspense fallback={<RevenueChartSkeleton />}>
+          <RevenueChart />
+        </Suspense>
         <LatestInvoices latestInvoices={latestInvoices} />
       </div>
     </main>
