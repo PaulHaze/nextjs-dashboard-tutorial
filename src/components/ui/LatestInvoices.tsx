@@ -2,13 +2,10 @@ import Image from 'next/image';
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { cn } from '@/lib/utils';
 
-import { LatestInvoice } from '@/lib/definitions';
+import { fetchLatestInvoices } from '@/lib/data';
 
-type LatestInvoicesProps = {
-  latestInvoices: LatestInvoice[];
-};
-
-export function LatestInvoices({ latestInvoices }: LatestInvoicesProps) {
+export async function LatestInvoices() {
+  const latestInvoices = await fetchLatestInvoices();
   return (
     <div className="mt-4 flex w-full flex-col md:col-span-4">
       <h2 className="mb-4 font-serif text-xl md:text-2xl">Latest Invoices</h2>
