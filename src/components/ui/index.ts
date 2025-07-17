@@ -4,3 +4,4 @@ export * from './Card';
 export * from './RevenueChart';
 export * from './LatestInvoices';
 export * from './Skeletons';
+export * from './Search';
