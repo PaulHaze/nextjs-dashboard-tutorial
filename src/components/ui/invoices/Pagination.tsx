@@ -7,6 +7,13 @@ import { cn } from '@/lib/utils';
 // import { generatePagination } from '@/lib/utils';
 
 // ${pathname === link.href && 'bg-sky-100 text-blue-600'}
+export function Pagination() {
+  return (
+    <div>
+      <p>Pagination Placeholder</p>
+    </div>
+  );
+}
 
 export function PaginationNumber({
   page,
