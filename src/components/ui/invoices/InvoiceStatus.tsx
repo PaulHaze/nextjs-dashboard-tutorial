@@ -2,7 +2,7 @@ import { CheckIcon, ClockIcon } from '@heroicons/react/24/outline';
 
 import { cn } from '@/lib/utils';
 
-export function Status({ status }: { status: string }) {
+export function InvoiceStatus({ status }: { status: string }) {
   return (
     <span
       className={cn(
