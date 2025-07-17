@@ -23,9 +23,10 @@ export function Search({ placeholder }: { placeholder: string }) {
         Search
       </label>
       <input
-        onChange={(e) => handleSearch(e.target.value)}
         className="peer block w-full rounded-md border border-gray-300 py-[9px] pl-10 text-sm placeholder:text-gray-500"
+        onChange={(e) => handleSearch(e.target.value)}
         placeholder={placeholder}
+        defaultValue={searchParams.get('query')?.toString()}
       />
       <MagnifyingGlassIcon className="absolute top-1/2 left-3 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
     </div>
