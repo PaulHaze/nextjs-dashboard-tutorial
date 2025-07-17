@@ -2,23 +2,11 @@ import Image from 'next/image';
 import { UpdateInvoice, DeleteInvoice } from './Buttons';
 import { InvoiceStatus } from './InvoiceStatus';
 import { formatDateToLocal, formatCurrency } from '@/lib/utils';
+import { InvoicesTable } from '@/lib/definitions';
 
-type Invoice = {
-  id: string;
-  name: string;
-  email: string;
-  image_url: string;
-  date: string;
-  amount: number;
-  status: 'pending' | 'paid';
-};
-
-export function InvoiceRow({ invoice }: { invoice: Invoice }) {
+export function InvoiceCard({ invoice }: { invoice: InvoicesTable }) {
   return (
-    <div
-      key={invoice.id}
-      className="mb-2 w-full rounded-md bg-white p-4"
-    >
+    <div key={invoice.id} className="mb-2 w-full rounded-md bg-white p-4">
       <div className="flex items-center justify-between border-b pb-4">
         <div>
           <div className="mb-2 flex items-center">

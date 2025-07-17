@@ -2,18 +2,9 @@ import Image from 'next/image';
 import { UpdateInvoice, DeleteInvoice } from './Buttons';
 import { InvoiceStatus } from './InvoiceStatus';
 import { formatDateToLocal, formatCurrency } from '@/lib/utils';
+import { InvoicesTable } from '@/lib/definitions';
 
-type Invoice = {
-  id: string;
-  name: string;
-  email: string;
-  image_url: string;
-  date: string;
-  amount: number;
-  status: 'pending' | 'paid';
-};
-
-export function InvoiceTableRow({ invoice }: { invoice: Invoice }) {
+export function InvoiceTableRow({ invoice }: { invoice: InvoicesTable }) {
   return (
     <tr
       key={invoice.id}
@@ -31,9 +22,7 @@ export function InvoiceTableRow({ invoice }: { invoice: Invoice }) {
           <p>{invoice.name}</p>
         </div>
       </td>
-      <td className="px-3 py-3 whitespace-nowrap">
-        {invoice.email}
-      </td>
+      <td className="px-3 py-3 whitespace-nowrap">{invoice.email}</td>
       <td className="px-3 py-3 whitespace-nowrap">
         {formatCurrency(invoice.amount)}
       </td>

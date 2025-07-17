@@ -1,4 +1,4 @@
-import { InvoiceRow } from './InvoiceRow';
+import { InvoiceCard } from './InvoiceCard';
 import { InvoiceTableRow } from './InvoiceTableRow';
 import { fetchFilteredInvoices } from '@/lib/data';
 
@@ -16,7 +16,7 @@ export async function Table({
         <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
           <div className="md:hidden">
             {invoices?.map((invoice) => (
-              <InvoiceRow key={invoice.id} invoice={invoice} />
+              <InvoiceCard key={invoice.id} invoice={invoice} />
             ))}
           </div>
           <table className="hidden min-w-full text-gray-900 md:table">
