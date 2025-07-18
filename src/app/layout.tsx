@@ -1,15 +1,15 @@
 import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import localFont from 'next/font/local';
+import { Lusitana } from 'next/font/google';
 // import { ThemeToggle } from '@/components/ui';
 import '@/styles/main.css';
 
-//* LEFT IN AS EXAMPLE OF HOW TO USE GOOGLE FONTS
-import { Lusitana } from 'next/font/google';
 const lusitana = Lusitana({
   subsets: ['latin'],
   variable: '--font-lusitana',
   weight: ['400', '700'],
+  display: 'swap',
 });
 
 const geistSans = localFont({
