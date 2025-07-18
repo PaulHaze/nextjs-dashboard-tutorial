@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Link from 'next/link';
 
 import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
@@ -15,7 +16,6 @@ export function CreateInvoice() {
 }
 
 export function UpdateInvoice({ id }: { id: string }) {
-  console.log('id', id);
   return (
     <Link
       href="/dashboard/invoices"
@@ -27,7 +27,6 @@ export function UpdateInvoice({ id }: { id: string }) {
 }
 
 export function DeleteInvoice({ id }: { id: string }) {
-  console.log('id', id);
   return (
     <>
       <button
