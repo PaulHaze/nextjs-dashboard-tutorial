@@ -1,33 +1,33 @@
 import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import localFont from 'next/font/local';
-// import { Lusitana } from 'next/font/google';
+import { Lusitana } from 'next/font/google';
 // import { ThemeToggle } from '@/components/ui';
 import '@/styles/main.css';
 
-const lusitana = localFont({
-  src: [
-    {
-      path: './fonts/Lusitana-Regular.woff',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: './fonts/Lusitana-Bold.woff',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-lusitana',
-  display: 'swap',
-});
-
-// const lusitana = Lusitana({
-//   subsets: ['latin'],
+// const lusitana = localFont({
+//   src: [
+//     {
+//       path: './fonts/Lusitana-Regular.woff',
+//       weight: '400',
+//       style: 'normal',
+//     },
+//     {
+//       path: './fonts/Lusitana-Bold.woff',
+//       weight: '700',
+//       style: 'normal',
+//     },
+//   ],
 //   variable: '--font-lusitana',
-//   weight: ['400', '700'],
 //   display: 'swap',
 // });
+
+const lusitana = Lusitana({
+  subsets: ['latin'],
+  variable: '--font-lusitana',
+  weight: ['400', '700'],
+  display: 'swap',
+});
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
