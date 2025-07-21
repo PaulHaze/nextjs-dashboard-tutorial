@@ -38,9 +38,6 @@ export async function createInvoice(formData: FormData) {
 
   revalidatePath('/dashboard/invoices');
   redirect('/dashboard/invoices');
-
-  // Return a success message or redirect
-  // return { success: true, message: 'Invoice created successfully!' };
 }
 
 export async function updateInvoice(id: string, formData: FormData) {
