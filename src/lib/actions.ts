@@ -18,47 +18,62 @@ const CreateInvoice = FormSchema.omit({ id: true, date: true });
 const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 
 export async function createInvoice(formData: FormData) {
-  // const rawFormData = Object.fromEntries(formData.entries());
-  // console.log('raw:', rawFormData);
-  const { customerId, amount, status } = CreateInvoice.parse({
-    customerId: formData.get('customerId'),
-    amount: formData.get('amount'),
-    status: formData.get('status'),
-  });
+  try {
+    // const rawFormData = Object.fromEntries(formData.entries());
+    // console.log('raw:', rawFormData);
+    const { customerId, amount, status } = CreateInvoice.parse({
+      customerId: formData.get('customerId'),
+      amount: formData.get('amount'),
+      status: formData.get('status'),
+    });
 
-  const amountInCents = amount * 100;
-  const date = new Date().toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+    const amountInCents = amount * 100;
+    const date = new Date().toISOString().split('T')[0]; // Format date as YYYY-MM-DD
 
-  insertInvoice({
-    customerId,
-    amountInCents,
-    status,
-    date,
-  });
+    await insertInvoice({
+      customerId,
+      amountInCents,
+      status,
+      date,
+    });
 
-  revalidatePath('/dashboard/invoices');
-  redirect('/dashboard/invoices');
+    revalidatePath('/dashboard/invoices');
+    redirect('/dashboard/invoices');
+  } catch (error) {
+    console.error('Failed to create invoice:', error);
+    throw new Error('Unable to create invoice. Please try again.');
+  }
 }
 
 export async function updateInvoice(id: string, formData: FormData) {
-  const { customerId, amount, status } = UpdateInvoice.parse({
-    customerId: formData.get('customerId'),
-    amount: formData.get('amount'),
-    status: formData.get('status'),
-  });
+  try {
+    const { customerId, amount, status } = UpdateInvoice.parse({
+      customerId: formData.get('customerId'),
+      amount: formData.get('amount'),
+      status: formData.get('status'),
+    });
 
-  const amountInCents = amount * 100;
-  editInvoice({
-    id,
-    customerId,
-    amountInCents,
-    status,
-  });
-  revalidatePath('/dashboard/invoices');
-  redirect('/dashboard/invoices');
+    const amountInCents = amount * 100;
+    await editInvoice({
+      id,
+      customerId,
+      amountInCents,
+      status,
+    });
+    revalidatePath('/dashboard/invoices');
+    redirect('/dashboard/invoices');
+  } catch (error) {
+    console.error('Failed to update invoice:', error);
+    throw new Error('Unable to update invoice. Please try again.');
+  }
 }
 
 export async function deleteInvoiceAction(id: string) {
-  deleteInvoice(id);
-  revalidatePath('/dashboard/invoices');
+  try {
+    await deleteInvoice(id);
+    revalidatePath('/dashboard/invoices');
+  } catch (error) {
+    console.error('Failed to delete invoice:', error);
+    throw new Error('Unable to delete invoice. Please try again.');
+  }
 }
