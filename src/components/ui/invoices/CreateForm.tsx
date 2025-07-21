@@ -13,22 +13,21 @@ import { CustomerField } from '@/lib/definitions';
 export function CreateForm({ customers }: { customers: CustomerField[] }) {
   return (
     <form>
-      <div className="rounded-md bg-gray-50 p-4 md:p-6">
+      <div className="rounded-md bg-slate-100 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
-          <label htmlFor="customer" className="mb-2 block text-sm font-medium">
+          <label htmlFor="customer" className="form-label">
             Choose customer
           </label>
           <div className="relative">
             <select
               id="customer"
               name="customerId"
-              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+              className="peer form-field"
               defaultValue=""
+              required
             >
-              <option value="" disabled>
-                Select a customer
-              </option>
+              <option value="">Select a customer</option>
               {customers.map((customer) => (
                 <option key={customer.id} value={customer.id}>
                   {customer.name}
@@ -41,7 +40,7 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
 
         {/* Invoice Amount */}
         <div className="mb-4">
-          <label htmlFor="amount" className="mb-2 block text-sm font-medium">
+          <label htmlFor="amount" className="form-label">
             Choose an amount
           </label>
           <div className="relative mt-2 rounded-md">
@@ -52,7 +51,7 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
                 type="number"
                 step="0.01"
                 placeholder="Enter USD amount"
-                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer form-field"
               />
               <CurrencyDollarIcon className="pointer-events-none absolute top-1/2 left-3 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>

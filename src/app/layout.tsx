@@ -55,7 +55,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${lusitana.variable} antialiased`}
       >
-        <ThemeProvider>
+        <ThemeProvider enableSystem={false}>
           <div className="relative">
             {/* <div className="absolute top-3 right-2">
               <ThemeToggle />

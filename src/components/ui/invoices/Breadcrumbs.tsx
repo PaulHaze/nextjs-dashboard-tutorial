@@ -10,13 +10,13 @@ type Breadcrumb = {
 export function Breadcrumbs({ breadcrumbs }: { breadcrumbs: Breadcrumb[] }) {
   return (
     <nav aria-label="Breadcrumb" className="mb-6 block">
-      <ol className="flex text-xl md:text-2xl">
+      <ol className="flex md:text-lg">
         {breadcrumbs.map((breadcrumb, index) => (
           <li
             key={breadcrumb.href}
             aria-current={breadcrumb.active}
             className={cn(
-              breadcrumb.active ? 'text-gray-900' : 'text-gray-500',
+              breadcrumb.active ? 'text-gray-800' : 'text-gray-400',
             )}
           >
             <Link href={breadcrumb.href}>{breadcrumb.label}</Link>
