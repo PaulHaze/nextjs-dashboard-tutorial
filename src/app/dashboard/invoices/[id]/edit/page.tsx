@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+
 import { Breadcrumbs, EditInvoiceForm } from '@/components/ui/invoices';
 import { fetchCustomers, fetchInvoiceById } from '@/lib/data';
 
@@ -9,6 +11,10 @@ export default async function EditInvoicePage(props: {
     fetchInvoiceById(id),
     fetchCustomers(),
   ]);
+
+  if (!invoice) {
+    notFound();
+  }
 
   return (
     <main>

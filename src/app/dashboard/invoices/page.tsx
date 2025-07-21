@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+
 import { Pagination, Table, CreateInvoice } from '@/components/ui/invoices';
 import { Search, InvoicesTableSkeleton } from '@/components/ui/';
 
