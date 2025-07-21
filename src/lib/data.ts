@@ -9,6 +9,7 @@ import {
   LatestInvoiceRaw,
   Revenue,
   FormInvoice,
+  EditInvoice,
 } from './definitions';
 
 import { formatCurrency } from '@/lib/utils';
@@ -235,5 +236,22 @@ export async function insertInvoice({
   } catch (err) {
     console.error('Database Error:', err);
     throw new Error('Failed to insert invoice');
+  }
+}
+export async function editInvoice({
+  id,
+  customerId,
+  amountInCents,
+  status,
+}: EditInvoice) {
+  try {
+    await sql`
+    UPDATE invoices
+    SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status}
+    WHERE id = ${id}
+  `;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to edit invoice');
   }
 }

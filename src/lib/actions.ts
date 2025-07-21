@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { insertInvoice } from '@/lib/data';
+import { insertInvoice, editInvoice } from '@/lib/data';
 
 const FormSchema = z.object({
   id: z.string(),
@@ -15,6 +15,7 @@ const FormSchema = z.object({
 });
 
 const CreateInvoice = FormSchema.omit({ id: true, date: true });
+const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 
 export async function createInvoice(formData: FormData) {
   // const rawFormData = Object.fromEntries(formData.entries());
@@ -28,7 +29,6 @@ export async function createInvoice(formData: FormData) {
   const amountInCents = amount * 100;
   const date = new Date().toISOString().split('T')[0]; // Format date as YYYY-MM-DD
 
-  console.log('Creating invoice with:', { customerId, amount, status });
   insertInvoice({
     customerId,
     amountInCents,
@@ -41,4 +41,22 @@ export async function createInvoice(formData: FormData) {
 
   // Return a success message or redirect
   // return { success: true, message: 'Invoice created successfully!' };
+}
+
+export async function updateInvoice(id: string, formData: FormData) {
+  const { customerId, amount, status } = UpdateInvoice.parse({
+    customerId: formData.get('customerId'),
+    amount: formData.get('amount'),
+    status: formData.get('status'),
+  });
+
+  const amountInCents = amount * 100;
+  editInvoice({
+    id,
+    customerId,
+    amountInCents,
+    status,
+  });
+  revalidatePath('/dashboard/invoices');
+  redirect('/dashboard/invoices');
 }
