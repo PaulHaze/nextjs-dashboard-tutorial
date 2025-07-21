@@ -1,10 +1,15 @@
-import { Breadcrumbs } from '@/components/ui/invoices';
-import { fetchCustomers } from '@/lib/data';
+import { Breadcrumbs, EditInvoiceForm } from '@/components/ui/invoices';
+import { fetchCustomers, fetchInvoiceById } from '@/lib/data';
 
 export default async function EditInvoicePage(props: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await props.params;
+  const [invoice, customers] = await Promise.all([
+    fetchInvoiceById(id),
+    fetchCustomers(),
+  ]);
+
   return (
     <main>
       <Breadcrumbs
@@ -17,7 +22,7 @@ export default async function EditInvoicePage(props: {
           },
         ]}
       />
-      {id}
+      <EditInvoiceForm invoice={invoice} customers={customers} />
     </main>
   );
 }
