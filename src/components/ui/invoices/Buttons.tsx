@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Link from 'next/link';
+import { deleteInvoiceAction } from '@/lib/actions';
 
 import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
 
@@ -27,8 +27,9 @@ export function UpdateInvoice({ id }: { id: string }) {
 }
 
 export function DeleteInvoice({ id }: { id: string }) {
+  const deleteInvoiceWithId = deleteInvoiceAction.bind(null, id);
   return (
-    <>
+    <form action={deleteInvoiceWithId}>
       <button
         type="submit"
         className="rounded-md border border-slate-300 p-2 hover:bg-red-200"
@@ -36,6 +37,6 @@ export function DeleteInvoice({ id }: { id: string }) {
         <span className="sr-only">Delete</span>
         <TrashIcon className="w-5" />
       </button>
-    </>
+    </form>
   );
 }

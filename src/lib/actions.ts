@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-import { insertInvoice, editInvoice } from '@/lib/data';
+import { insertInvoice, editInvoice, deleteInvoice } from '@/lib/data';
 
 const FormSchema = z.object({
   id: z.string(),
@@ -59,4 +59,9 @@ export async function updateInvoice(id: string, formData: FormData) {
   });
   revalidatePath('/dashboard/invoices');
   redirect('/dashboard/invoices');
+}
+
+export async function deleteInvoiceAction(id: string) {
+  deleteInvoice(id);
+  revalidatePath('/dashboard/invoices');
 }

@@ -255,3 +255,7 @@ export async function editInvoice({
     throw new Error('Failed to edit invoice');
   }
 }
+
+export async function deleteInvoice(id: string) {
+  await sql`DELETE FROM invoices WHERE id = ${id}`;
+}
