@@ -6,6 +6,7 @@ import {
   InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
+  FormInvoice,
 } from './definitions';
 
 import { formatCurrency } from '@/lib/utils';
@@ -215,5 +216,22 @@ export async function fetchFilteredCustomers(query: string) {
   } catch (err) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch customer table.');
+  }
+}
+
+export async function insertInvoice({
+  customerId,
+  amountInCents,
+  status,
+  date,
+}: FormInvoice) {
+  try {
+    await sql`
+    INSERT INTO invoices (customer_id, amount, status, date)
+    VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
+  `;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to insert invoice');
   }
 }

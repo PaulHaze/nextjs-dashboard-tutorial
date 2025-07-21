@@ -1,9 +1,8 @@
 'use server';
 
 import { z } from 'zod';
-import postgres from 'postgres';
 
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+import { insertInvoice } from '@/lib/data';
 
 const FormSchema = z.object({
   id: z.string(),
@@ -27,14 +26,13 @@ export async function createInvoice(formData: FormData) {
   const amountInCents = amount * 100;
   const date = new Date().toISOString().split('T')[0]; // Format date as YYYY-MM-DD
 
-  // Here you would typically send the data to your backend or database
-  // For example, using fetch or a database client
-
   console.log('Creating invoice with:', { customerId, amount, status });
-  await sql`
-    INSERT INTO invoices (customer_id, amount, status, date)
-    VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
-  `;
+  insertInvoice({
+    customerId,
+    amountInCents,
+    status,
+    date,
+  });
 
   // Return a success message or redirect
   // return { success: true, message: 'Invoice created successfully!' };
