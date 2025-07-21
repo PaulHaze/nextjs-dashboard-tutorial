@@ -1,6 +1,8 @@
 'use server';
 
 import { z } from 'zod';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 import { insertInvoice } from '@/lib/data';
 
@@ -33,6 +35,9 @@ export async function createInvoice(formData: FormData) {
     status,
     date,
   });
+
+  revalidatePath('/dashboard/invoices');
+  redirect('/dashboard/invoices');
 
   // Return a success message or redirect
   // return { success: true, message: 'Invoice created successfully!' };
