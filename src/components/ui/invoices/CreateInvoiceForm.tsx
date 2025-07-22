@@ -1,3 +1,6 @@
+'use client';
+
+import { useActionState } from 'react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui';
@@ -8,12 +11,23 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 
-import { createInvoice } from '@/lib/actions';
 import { CustomerField } from '@/lib/definitions';
+import { createInvoice, type InvoiceFormState } from '@/lib/actions';
 
 export function CreateForm({ customers }: { customers: CustomerField[] }) {
+  const initialState: InvoiceFormState = {
+    message: null,
+    errors: {},
+  };
+
+  // function createInvoiceAction(state: typeof initialState, formData: FormData) {
+  //   return createInvoice(formData);
+  // }
+  const [state, formAction] = useActionState(createInvoice, initialState);
+
+  console.log(state);
   return (
-    <form action={createInvoice}>
+    <form action={formAction}>
       <div className="rounded-md bg-slate-100 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -25,8 +39,8 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
               id="customer"
               name="customerId"
               className="peer form-field"
-              defaultValue=""
-              required
+              defaultValue={state.data?.customerId || ""}
+              aria-describedby="customer-error"
             >
               <option value="">Select a customer</option>
               {customers.map((customer) => (
@@ -36,6 +50,14 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
               ))}
             </select>
             <UserCircleIcon className="pointer-events-none absolute top-1/2 left-3 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
+          </div>
+          <div id="customer-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.customerId &&
+              state.errors.customerId.map((error: string) => (
+                <p className="mt-2 text-sm text-red-500" key={error}>
+                  {error}
+                </p>
+              ))}
           </div>
         </div>
 
@@ -53,9 +75,19 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
                 step="0.01"
                 placeholder="Enter USD amount"
                 className="peer form-field"
+                defaultValue={state.data?.amount || ""}
+                aria-describedby="amount-error"
               />
               <CurrencyDollarIcon className="pointer-events-none absolute top-1/2 left-3 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
+          </div>
+          <div id="amount-error" aria-live="polite" aria-atomic="true">
+            {state.errors?.amount &&
+              state.errors.amount.map((error: string) => (
+                <p className="mt-2 text-sm text-red-500" key={error}>
+                  {error}
+                </p>
+              ))}
           </div>
         </div>
 
@@ -73,6 +105,8 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
                   type="radio"
                   value="pending"
                   className="radio-field"
+                  defaultChecked={state.data?.status === "pending"}
+                  aria-describedby="status-error"
                 />
                 <label
                   htmlFor="pending"
@@ -88,6 +122,8 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
                   type="radio"
                   value="paid"
                   className="radio-field"
+                  defaultChecked={state.data?.status === "paid"}
+                  aria-describedby="status-error"
                 />
                 <label
                   htmlFor="paid"
@@ -99,6 +135,14 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
             </div>
           </div>
         </fieldset>
+        <div id="status-error" aria-live="polite" aria-atomic="true">
+          {state.errors?.status &&
+            state.errors.status.map((error: string) => (
+              <p className="mt-2 text-sm text-red-500" key={error}>
+                {error}
+              </p>
+            ))}
+        </div>
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <Link
