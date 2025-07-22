@@ -29,10 +29,9 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
   }, [state]);
 
   const clearError = (field: string) => {
-    setClearedErrors(prev => new Set(prev).add(field));
+    setClearedErrors((prev) => new Set(prev).add(field));
   };
 
-  console.log(state);
   return (
     <form action={formAction}>
       <div className="rounded-md bg-slate-100 p-4 md:p-6">
@@ -93,7 +92,8 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
             </div>
           </div>
           <div id="amount-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.amount && !clearedErrors.has('amount') &&
+            {state.errors?.amount &&
+              !clearedErrors.has('amount') &&
               state.errors.amount.map((error: string) => (
                 <p className="mt-2 text-sm text-red-500" key={error}>
                   {error}
@@ -149,7 +149,8 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
           </div>
         </fieldset>
         <div id="status-error" aria-live="polite" aria-atomic="true">
-          {state.errors?.status && !clearedErrors.has('status') &&
+          {state.errors?.status &&
+            !clearedErrors.has('status') &&
             state.errors.status.map((error: string) => (
               <p className="mt-2 text-sm text-red-500" key={error}>
                 {error}

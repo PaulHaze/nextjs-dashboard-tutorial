@@ -8,12 +8,12 @@ import { insertInvoice, editInvoice, deleteInvoice } from '@/lib/data';
 
 const FormSchema = z.object({
   id: z.string(),
-  customerId: z.string().min(1, { message: 'Please select a customer.' }),
+  customerId: z.string().min(1, { error: 'Please select a customer.' }),
   amount: z.coerce
     .number()
-    .gt(0, { message: 'Please enter an amount greater than $0.' }),
+    .gt(0, { error: 'Please enter an amount greater than $0.' }),
   status: z.enum(['pending', 'paid'], {
-    message: 'Please select an invoice status.',
+    error: 'Please select an invoice status.',
   }),
   date: z.string(),
 });
@@ -48,8 +48,9 @@ export async function createInvoice(
     });
 
     if (!validatedFields.success) {
+      const errors = z.flattenError(validatedFields.error);
       return {
-        errors: validatedFields.error.flatten().fieldErrors,
+        errors: errors.fieldErrors,
         message: 'Missing Fields. Failed to Create Invoice.',
         data: {
           customerId: formData.get('customerId') as string,
