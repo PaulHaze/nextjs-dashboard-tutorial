@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useState, useEffect } from 'react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui';
@@ -12,7 +12,8 @@ import {
 } from '@heroicons/react/24/outline';
 
 import { CustomerField } from '@/lib/definitions';
-import { createInvoice, type InvoiceFormState } from '@/lib/actions';
+import { createInvoice } from '@/lib/actions';
+import type { InvoiceFormState } from '@/lib/actions';
 
 export function CreateForm({ customers }: { customers: CustomerField[] }) {
   const initialState: InvoiceFormState = {
@@ -20,10 +21,16 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
     errors: {},
   };
 
-  // function createInvoiceAction(state: typeof initialState, formData: FormData) {
-  //   return createInvoice(formData);
-  // }
   const [state, formAction] = useActionState(createInvoice, initialState);
+  const [clearedErrors, setClearedErrors] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    setClearedErrors(new Set());
+  }, [state]);
+
+  const clearError = (field: string) => {
+    setClearedErrors(prev => new Set(prev).add(field));
+  };
 
   console.log(state);
   return (
@@ -39,7 +46,8 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
               id="customer"
               name="customerId"
               className="peer form-field"
-              defaultValue={state.data?.customerId || ""}
+              defaultValue={state.data?.customerId || ''}
+              onChange={() => clearError('customerId')}
               aria-describedby="customer-error"
             >
               <option value="">Select a customer</option>
@@ -52,12 +60,14 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
             <UserCircleIcon className="pointer-events-none absolute top-1/2 left-3 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
           </div>
           <div id="customer-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.customerId &&
-              state.errors.customerId.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
+            {state.errors?.customerId && !clearedErrors.has('customerId') && (
+              <p
+                className="mt-2 text-sm text-red-500"
+                key={state.errors.customerId[0]}
+              >
+                {state.errors.customerId[0]}
+              </p>
+            )}
           </div>
         </div>
 
@@ -75,14 +85,15 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
                 step="0.01"
                 placeholder="Enter USD amount"
                 className="peer form-field"
-                defaultValue={state.data?.amount || ""}
+                defaultValue={state.data?.amount || ''}
+                onChange={() => clearError('amount')}
                 aria-describedby="amount-error"
               />
               <CurrencyDollarIcon className="pointer-events-none absolute top-1/2 left-3 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
           <div id="amount-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.amount &&
+            {state.errors?.amount && !clearedErrors.has('amount') &&
               state.errors.amount.map((error: string) => (
                 <p className="mt-2 text-sm text-red-500" key={error}>
                   {error}
@@ -105,7 +116,8 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
                   type="radio"
                   value="pending"
                   className="radio-field"
-                  defaultChecked={state.data?.status === "pending"}
+                  defaultChecked={state.data?.status === 'pending'}
+                  onChange={() => clearError('status')}
                   aria-describedby="status-error"
                 />
                 <label
@@ -122,7 +134,8 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
                   type="radio"
                   value="paid"
                   className="radio-field"
-                  defaultChecked={state.data?.status === "paid"}
+                  defaultChecked={state.data?.status === 'paid'}
+                  onChange={() => clearError('status')}
                   aria-describedby="status-error"
                 />
                 <label
@@ -136,7 +149,7 @@ export function CreateForm({ customers }: { customers: CustomerField[] }) {
           </div>
         </fieldset>
         <div id="status-error" aria-live="polite" aria-atomic="true">
-          {state.errors?.status &&
+          {state.errors?.status && !clearedErrors.has('status') &&
             state.errors.status.map((error: string) => (
               <p className="mt-2 text-sm text-red-500" key={error}>
                 {error}

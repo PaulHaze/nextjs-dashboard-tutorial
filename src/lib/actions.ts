@@ -20,22 +20,6 @@ const FormSchema = z.object({
 
 const InvoiceSchema = FormSchema.omit({ id: true, date: true });
 
-// const invoiceHelper = (data: FormData) => {
-//   const { customerId, amount, status } = InvoiceSchema.parse({
-//     customerId: data.get('customerId'),
-//     amount: data.get('amount'),
-//     status: data.get('status'),
-//   });
-//   const amountInCents = amount * 100;
-//   const date = new Date().toISOString().split('T')[0]; // Format date as YYYY-MM-DD
-//   return {
-//     customerId,
-//     amountInCents,
-//     status,
-//     date,
-//   };
-// };
-
 export type InvoiceFormState = {
   errors?: {
     customerId?: string[];
@@ -79,7 +63,6 @@ export async function createInvoice(
     const { customerId, amount, status } = validatedFields.data;
     const amountInCents = amount * 100;
     const date = new Date().toISOString().split('T')[0];
-    // const { customerId, amountInCents, status, date } = invoiceHelper(formData);
 
     await insertInvoice({
       customerId,
@@ -105,7 +88,7 @@ export async function updateInvoice(id: string, formData: FormData) {
     });
 
     const amountInCents = amount * 100;
-    // const { customerId, amountInCents, status } = invoiceHelper(formData);
+
     await editInvoice({
       id,
       customerId,
