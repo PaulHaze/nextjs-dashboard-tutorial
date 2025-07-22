@@ -216,7 +216,7 @@ export async function fetchFilteredCustomers(query: string) {
 
     return customers;
   } catch (err) {
-    console.error('Database Error:', err);
+    console.error('Filtered Customer Error From data.ts: ', err);
     throw new Error('Failed to fetch customer table.');
   }
 }
@@ -233,7 +233,7 @@ export async function insertInvoice({
     VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
   `;
   } catch (err) {
-    console.error('Database Error:', err);
+    console.error('Insert Invoice Error From data.ts: ', err);
     throw new Error('Failed to insert invoice');
   }
 }
@@ -250,7 +250,7 @@ export async function editInvoice({
     WHERE id = ${id}
   `;
   } catch (err) {
-    console.error('Database Error:', err);
+    console.error('Edit Invoice Error From data.ts: ', err);
     throw new Error('Failed to edit invoice');
   }
 }
@@ -259,7 +259,7 @@ export async function deleteInvoice(id: string) {
   try {
     await sql`DELETE FROM invoices WHERE id = ${id}`;
   } catch (error) {
-    console.error('Database Error:', error);
+    console.error('Delete Error From data.ts:', error);
     throw new Error('Failed to delete invoice.');
   }
 }
