@@ -6,7 +6,10 @@ import { InvoicesTable } from '@/lib/definitions';
 
 export function InvoiceCard({ invoice }: { invoice: InvoicesTable }) {
   return (
-    <div key={invoice.id} className="mb-2 w-full rounded-md bg-white p-4">
+    <div
+      key={invoice.id}
+      className="mb-2 w-full rounded-md bg-white p-4 shadow-xs"
+    >
       <div className="flex items-center justify-between border-b pb-4">
         <div>
           <div className="mb-2 flex items-center">
