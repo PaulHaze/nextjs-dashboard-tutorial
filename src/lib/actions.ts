@@ -14,21 +14,37 @@ const FormSchema = z.object({
   date: z.string(),
 });
 
-const CreateInvoice = FormSchema.omit({ id: true, date: true });
-const UpdateInvoice = FormSchema.omit({ id: true, date: true });
+const InvoiceSchema = FormSchema.omit({ id: true, date: true });
+
+const invoiceHelper = (data: FormData) => {
+  const { customerId, amount, status } = InvoiceSchema.parse({
+    customerId: data.get('customerId'),
+    amount: data.get('amount'),
+    status: data.get('status'),
+  });
+  const amountInCents = amount * 100;
+  const date = new Date().toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+  return {
+    customerId,
+    amountInCents,
+    status,
+    date,
+  };
+};
 
 export async function createInvoice(formData: FormData) {
   try {
     // const rawFormData = Object.fromEntries(formData.entries());
     // console.log('raw:', rawFormData);
-    const { customerId, amount, status } = CreateInvoice.parse({
-      customerId: formData.get('customerId'),
-      amount: formData.get('amount'),
-      status: formData.get('status'),
-    });
+    // const { customerId, amount, status } = InvoiceSchema.parse({
+    //   customerId: formData.get('customerId'),
+    //   amount: formData.get('amount'),
+    //   status: formData.get('status'),
+    // });
 
-    const amountInCents = amount * 100;
-    const date = new Date().toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+    // const amountInCents = amount * 100;
+    // const date = new Date().toISOString().split('T')[0];
+    const { customerId, amountInCents, status, date } = invoiceHelper(formData);
 
     await insertInvoice({
       customerId,
@@ -47,13 +63,14 @@ export async function createInvoice(formData: FormData) {
 
 export async function updateInvoice(id: string, formData: FormData) {
   try {
-    const { customerId, amount, status } = UpdateInvoice.parse({
-      customerId: formData.get('customerId'),
-      amount: formData.get('amount'),
-      status: formData.get('status'),
-    });
+    // const { customerId, amount, status } = InvoiceSchema.parse({
+    //   customerId: formData.get('customerId'),
+    //   amount: formData.get('amount'),
+    //   status: formData.get('status'),
+    // });
 
-    const amountInCents = amount * 100;
+    // const amountInCents = amount * 100;
+    const { customerId, amountInCents, status } = invoiceHelper(formData);
     await editInvoice({
       id,
       customerId,
