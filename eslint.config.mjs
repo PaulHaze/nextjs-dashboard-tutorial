@@ -5,6 +5,7 @@ import tseslint from 'typescript-eslint';
 import pluginReact from 'eslint-plugin-react';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import pluginImport from 'eslint-plugin-import';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 const baseConfig = {
   name: 'Base Configuration',
@@ -48,6 +49,14 @@ const nextLint = {
   },
 };
 
+// const jsxA11yConfig = {
+//   name: 'jsxA11yConfig Config',
+//   files: ['**/*.{ts,tsx,mjs}'],
+//   ignores: ['e2e/**', '**/*.spec.{ts,tsx}', '**/*.test.{ts,tsx}'],
+//   extends: [jsxA11y.flatConfigs.recommended],
+//   // custom rules
+// };
+
 export default tseslint.config(
   // Use tseslint.config instead of direct array export
   baseConfig,
@@ -57,6 +66,7 @@ export default tseslint.config(
   pluginReact.configs.flat.recommended,
   pluginReact.configs.flat['jsx-runtime'],
   nextLint,
+  jsxA11y.flatConfigs.recommended,
 
   // Prettier and additional configs
   eslintConfigPrettier,
